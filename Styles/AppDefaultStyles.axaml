@@ -1,0 +1,38 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+    <Style Selector="TextBlock#Header">
+        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="Margin" Value="0, 10, 0, 0"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style Selector="TextBox">
+        <Setter Property="Margin" Value="1"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="Height" Value="50"></Setter>
+        <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style Selector="Button#Add">
+        <Setter Property="Height" Value="50"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+    </Style>
+    
+    <Style Selector="CheckBox">
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Margin" Value="5,0,0,0"></Setter>
+    </Style>
+    
+    <Style Selector="Button#Delete">
+        <Setter Property="Margin" Value="0,0,5,0"></Setter>
+        <Setter Property="Height" Value="30"> </Setter>
+    </Style>
+</Styles>

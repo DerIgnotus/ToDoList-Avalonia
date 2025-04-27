@@ -3,18 +3,55 @@
         xmlns:vm="using:ToDoList.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="600"
+        Width="400" Height="600"        
         x:Class="ToDoList.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="ToDoList">
 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    
+    <Grid x:Name="Root" 
+          Background="{DynamicResource PrimaryGradientBackground}" 
+          RowDefinitions="35, Auto, *">
+        
+        <TextBlock x:Name="Header">ToDo-List</TextBlock>
+        
+        <ScrollViewer Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding TodoList}">
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate>
+                      
+                      <Grid ColumnDefinitions="*, Auto">
+                          <CheckBox Grid.Row="0" IsChecked="{Binding IsCompleted}" Content="{Binding Content}">
+                              
+                          </CheckBox>
+                          
+                          <Button x:Name="Delete" Grid.Column="1" Content="Delete" 
+                                  Command="{Binding #Root.((vm:MainWindowViewModel)DataContext).DeleteTodoCommand, FallbackValue={x:Null}}"
+                                  CommandParameter="{Binding .}"></Button>
+                      </Grid>
+                      
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        
+        <TextBox Grid.Row="2" Watermark="Add a Task" Text="{Binding NewToDoContent}">
+            <TextBox.InnerRightContent>
+                <Button x:Name="Add" Command="{Binding AddToDoCommand}">
+                    Add
+                </Button>
+            </TextBox.InnerRightContent>
+            
+            <TextBox.KeyBindings>
+                <KeyBinding Gesture="Enter" Command="{Binding AddToDoCommand}"> </KeyBinding>
+            </TextBox.KeyBindings>
+        </TextBox>
+        
+    </Grid>
 
 </Window>
