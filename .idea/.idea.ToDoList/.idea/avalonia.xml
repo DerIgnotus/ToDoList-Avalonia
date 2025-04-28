@@ -5,6 +5,7 @@
       <map>
         <entry key="App.axaml" value="ToDoList.csproj" />
         <entry key="Styles/AppDefaultStyles.axaml" value="ToDoList.csproj" />
+        <entry key="Views/AddTaskCategories.axaml" value="ToDoList.csproj" />
         <entry key="Views/MainWindow.axaml" value="ToDoList.csproj" />
       </map>
     </option>

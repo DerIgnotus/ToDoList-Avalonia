@@ -1,0 +1,35 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:ToDoList.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="150"
+        Width="350" Height="150"
+        Icon="/Assets/avalonia-logo.ico"
+        x:DataType="vm:MainWindowViewModel"
+        x:Class="ToDoList.Views.AddTaskCategories">
+    
+    <Grid RowDefinitions="60, *" Background="{DynamicResource PrimaryGradientBackground}">
+        <Grid  Grid.Row="0" ColumnDefinitions="*, *" >
+            <ComboBox Grid.Column="0" MaxDropDownHeight="300" SelectedIndex="0" Width="150"
+                      ItemsSource="{Binding ChoosableCategories}"
+                      SelectedItem="{Binding NewToDoCategory}"
+                      Margin="10">
+
+            </ComboBox>
+            
+            <ComboBox Grid.Column="1" MaxDropDownHeight="300" SelectedIndex="0" Width="150"
+                      ItemsSource="{Binding ChoosablePriorities}"
+                      SelectedItem="{Binding NewToDoPriority}"
+                      Margin="10">
+
+            </ComboBox>
+        </Grid>
+        
+        <Button Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="50" Width="150" 
+                VerticalContentAlignment="Center" FontSize="20" HorizontalContentAlignment="Center"
+                Command="{Binding FinalAddToDoCommand}">
+            Add ToDo
+        </Button>
+    </Grid>
+</Window>
