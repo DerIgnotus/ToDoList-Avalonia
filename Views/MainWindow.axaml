@@ -14,7 +14,7 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <Grid x:Name="Root" 
+    <Grid x:Name="Root" Focusable="True" 
           Background="{DynamicResource PrimaryGradientBackground}" 
           RowDefinitions="35, 60, 440, *">
         
@@ -40,12 +40,30 @@
             <ItemsControl ItemsSource="{Binding TodoList}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Grid ColumnDefinitions="*, Auto">
-                            <CheckBox Grid.Row="0" IsChecked="{Binding IsCompleted}" VerticalAlignment="Center" Content="{Binding Content}">
-                                      
+                        <Grid ColumnDefinitions="*, Auto, Auto, Auto" Margin="0,5,0,0">
+                            <CheckBox Grid.Row="0" IsChecked="{Binding IsCompleted}" VerticalAlignment="Center">
                             </CheckBox>
-                                  
-                            <Button x:Name="Delete" Grid.Column="1" Width="40" Height="40"
+                            
+                            <TextBox x:Name="MyTextBox" Grid.Column="1" Width="245" Margin="0,0,5,0" Height="40"
+                                     IsReadOnly="True"
+                                     Focusable="False"
+                                     Text="{Binding Content, Mode=TwoWay}"
+                                     IsHitTestVisible = "false">
+                                
+                                <TextBox.KeyBindings>
+                                    <KeyBinding Gesture="Enter" Command="{Binding #Root.((vm:MainWindowViewModel)DataContext).DoneEditingCommand, FallbackValue={x:Null}}"
+                                                CommandParameter="{Binding ElementName=MyTextBox}"></KeyBinding>
+                                </TextBox.KeyBindings>
+                                
+                            </TextBox>
+                            
+                            <Button Grid.Column="2" Width="40" Height="40" Margin="0,0,5,0"
+                                    Command="{Binding #Root.((vm:MainWindowViewModel)DataContext).EditTodoCommand, FallbackValue={x:Null}}"
+                                    CommandParameter="{Binding ElementName=MyTextBox}">
+                                <Image Width="30" Height="30" Source="/Assets/edit.png"></Image>
+                            </Button>
+                            
+                            <Button x:Name="Delete" Grid.Column="3" Width="40" Height="40"
                                     Command="{Binding #Root.((vm:MainWindowViewModel)DataContext).DeleteTodoCommand, FallbackValue={x:Null}}"
                                     CommandParameter="{Binding .}">
                                 <Image Width="30" Height="30" Source="/Assets/cross.png"></Image>

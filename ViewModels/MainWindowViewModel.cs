@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using Avalonia.Controls;
+using Avalonia.VisualTree;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ToDoList.Models;
@@ -99,6 +101,24 @@ public partial class MainWindowViewModel : ViewModelBase
         _ = value;
         
         FilterToDoList();
+    }
+
+    [RelayCommand]
+    private void DoneEditing(TextBox textBox)
+    {
+        textBox.IsReadOnly = true;
+        textBox.Focusable = false;
+
+        var window = textBox.GetVisualRoot() as Window;
+        window?.Focus();
+    }
+
+    [RelayCommand]
+    private void EditTodo(TextBox textBox)
+    {
+        textBox.IsReadOnly = false;
+        textBox.Focusable = true;
+        textBox.Focus();
     }
     
     partial void OnSelectedPriorityChanged(string value)
